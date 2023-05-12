@@ -1,0 +1,38 @@
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+h1 {
+  text-align: center;
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+.gameContainer {
+  height: 60vh;
+  width: 100vw;
+  display: flex;
+}
+.computer {
+  width: 50vw;
+  text-align: center;
+  background-color: rgb(216, 109, 109);
+}
+.user {
+  width: 50vw;
+  text-align: center;
+  background-color: rgb(109, 190, 109);
+}
+.userinput {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-size: xx-large;
+}
