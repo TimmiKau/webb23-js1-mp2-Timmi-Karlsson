@@ -16,7 +16,6 @@
       const userResult = user.querySelector('#Result')
       const userScoreText = user.querySelector('#score')
 
-
       //Computer
       let computerChoice = 2
       let computerScore = 0
@@ -60,6 +59,7 @@
           console.log('draw')
           userResult.innerHTML= 'Draw'
           computerResult.innerHTML= 'Draw'
+          winner()
         } else if (
           (computerChoice === 1 && userChoice === 3) ||
           (computerChoice === 3 && userChoice === 2) ||
@@ -70,6 +70,7 @@
           userResult.innerHTML= 'lose'
           computerScore++
           computerScoreText.innerHTML= computerScore
+          winner()
         } else if (
           (computerChoice === 3 && userChoice === 1) ||
           (computerChoice === 2 && userChoice === 3) ||
@@ -80,22 +81,36 @@
           computerResult.innerHTML= 'lose'
           userScore++
           userScoreText.innerHTML= userScore
+          winner()
         }
-        winner()
       }
 
       function winner() {
         if (computerScore === 3) {
-          console.log(' computer wins')
-          alert('Computer won!')
-          resetGame()
+          console.log('computer wins')
+          disableButtons()
+          showModal('Computer won!', resetGame)
         } else if (userScore === 3) {
           console.log('user wins')
-          alert(`${userName} won!` )
-          resetGame()
-          
+          disableButtons()
+          showModal(`${userName} won!`, resetGame)
         }
       }
+
+      function showModal(message, callback) {
+        const modal = document.getElementById('myModal')
+        const modalMessage = document.getElementById('modalMessage')
+        const modalBtn = document.getElementById('modalBtn')
+      
+        modalMessage.textContent = message
+        modal.style.display = 'block'
+      
+        modalBtn.addEventListener('click', function() {
+          modal.style.display = 'none'
+          callback()
+        })
+      }
+
 
       //Take user input
       rockBtn.addEventListener('click', () => {
@@ -117,6 +132,7 @@
       function startGame (){
         resetGame()
         userPlayerText.innerHTML= userName
+        enableButtons()
       }
 
 function resetGame ( ){
@@ -128,6 +144,17 @@ function resetGame ( ){
   computerChoiceText.innerHTML= ' '
   userResult.innerHTML= ' '
   computerResult.innerHTML= ' '
+  enableButtons()
+}
+function disableButtons() {
+  rockBtn.disabled = true
+  paperBtn.disabled = true
+  scissorsBtn.disabled = true
 }
 
+function enableButtons() {
+  rockBtn.disabled = false
+  paperBtn.disabled = false
+  scissorsBtn.disabled = false
+}
       startGame()
